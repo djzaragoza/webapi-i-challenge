@@ -45,7 +45,28 @@ server.get('/api/users/:id', (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ success: false, error 'The user information could not be retrieved.', err })
+            res.status(500).json({ success: false, error: 'The user information could not be retrieved.', err })
         });
 });
 
+server.put('/api/users/:id', (req, res) => {
+    const {id} = req.params;
+    const newUser = req.body;
+
+    db.update(id, newUser)
+        .then(user => {
+            if(user &&(newUser.name && newUser.bio)) {
+                res.status(200).json({ success: true, user });
+            }
+            else if (!user && (newUser.name &&newUser.bio )) {
+                res.status(404).json({ success: faise, error: 'The user with the specified ID does not exist.'});
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ success: false, error: 'The user information could not be modified.', err });
+        });
+});
+
+server.listen(4000, () => {
+    console.log('server listening on port 4000');
+});
