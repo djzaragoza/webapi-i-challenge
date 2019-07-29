@@ -19,7 +19,7 @@ server.post('/api/users', (req, res) => {
             }
         })
         .catch(err => {
-            res.status(500).json({ success: false, error: 'Therewas an error while saving the user to the database. ', err});
+            res.status(500).json({ success: false, error: 'There was an error while saving the user to the database. ', err});
         });
 });
 
@@ -59,7 +59,7 @@ server.put('/api/users/:id', (req, res) => {
                 res.status(200).json({ success: true, user });
             }
             else if (!user && (newUser.name &&newUser.bio )) {
-                res.status(404).json({ success: faise, error: 'The user with the specified ID does not exist.'});
+                res.status(404).json({ success: false, error: 'The user with the specified ID does not exist.'});
             }
         })
         .catch(err => {
@@ -68,5 +68,5 @@ server.put('/api/users/:id', (req, res) => {
 });
 
 server.listen(4000, () => {
-    console.log('server listening on port 4000');
+    console.log('server listening on port 4001');
 });
