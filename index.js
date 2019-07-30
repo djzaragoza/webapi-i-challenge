@@ -38,7 +38,7 @@ server.get('/api/users/:id', (req, res) => {
 
     db.findById(id)
         .then(user => {
-            if(user) {
+            if(user) { 
                 res.status(200).json(user);
             }else {
                 res.status(404).json({ success: false, error: 'The user with the specified ID does not exist.'});
@@ -58,7 +58,7 @@ server.put('/api/users/:id', (req, res) => {
             if(user &&(newUser.name && newUser.bio)) {
                 res.status(200).json({ success: true, user });
             }
-            else if (!user && (newUser.name &&newUser.bio )) {
+            else if (!user && (newUser.name && newUser.bio )) {
                 res.status(404).json({ success: false, error: 'The user with the specified ID does not exist.'});
             }
         })
