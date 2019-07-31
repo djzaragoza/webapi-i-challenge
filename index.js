@@ -26,7 +26,7 @@ server.post('/api/users', (req, res) => {
 server.get('/api/users', (req, res) => {
     db.find()
         .then(users => {
-            res.status(200).json(users);
+            res.status(200).json({ success: true, users});
         })
         .catch(err => {
             res.status(500).json({ success: false, err });
@@ -67,6 +67,6 @@ server.put('/api/users/:id', (req, res) => {
         });
 });
 
-server.listen(4000, () => {
-    console.log('server listening on port 4001');
+server.listen(4000, (req, res) => {
+    console.log('server listening on port 4000');
 });
